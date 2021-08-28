@@ -1,18 +1,18 @@
 #!/bin/bash
 sudo apt update
 sudo apt install wget -y
-. <(wget -qO - https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
+. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
 echo -e 'The guide of \e[40m\e[92mhttps://t.me/how_to_node\e[0m was used\n'
 if [ ! $stratos_moniker ]; then
 	read -p $'Enter your node name: \e[40m\e[92m' stratos_moniker
 	echo -e '\e[0m'
-	. <(wget -qO - https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) "stratos_moniker" $stratos_moniker
+	. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) "stratos_moniker" $stratos_moniker
 else
 	echo -e "Your node name: \e[40m\e[92m$stratos_moniker\e[0m\n"
 fi
 sudo apt upgrade -y
 sudo apt install curl jq -y
-. <(wget -qO - https://raw.githubusercontent.com/SecorD0/utils/main/golang_installer.sh)
+. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/golang_installer.sh)
 cd $HOME
 mkdir stratos
 cd $HOME/stratos
@@ -49,10 +49,10 @@ echo -e '\e[40m\e[92mDone!\e[0m'
 echo -e '\e[40m\e[92mWallet creating...\e[0m'
 $HOME/stratos/stchaincli keys add --hd-path "m/44'/606'/0'/0/0" --keyring-backend test --home $HOME/stratos/ $stratos_moniker &> "$HOME/stratos/$stratos_moniker.txt"
 stratos_address=$(grep -oP '(?<=\  address: )(\w+)' "$HOME/stratos/$stratos_moniker.txt")
-. <(wget -qO - https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) "stratos_address" $stratos_address
+. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/insert_variable.sh) "stratos_address" $stratos_address
 curl -X POST https://faucet-test.thestratos.org/faucet/$stratos_address
 echo -e '\e[40m\e[92mDone!\e[0m'
-. <(wget -qO - https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
+. <(wget -qO- https://raw.githubusercontent.com/SecorD0/utils/main/logo.sh)
 echo -e 'The guide of \e[40m\e[92mhttps://t.me/how_to_node\e[0m was used\n'
 echo -e '\nThe node was \e[40m\e[92mstarted\e[0m, the wallet was \e[40m\e[92mcreated\e[0m, the tokens was \e[40m\e[92mreceived\e[0m.\n'
 echo -e 'Remember to save this files:'
